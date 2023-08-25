@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- ELS VEHICLE CONFIGURATION FILE -->
+<vcfroot Description="EmergencyLS | VCF sample configuration" Author="Infinity Studios">
+	<!-- EXTRAS CONFIGURATION -->
+	<EOVERRIDE>	
+		<Extra01 IsElsControlled="true" AllowEnvLight="true" Color="blue" OffsetX="-0.70" OffsetY="-0.20" OffsetZ="0.50" /> 
+		<Extra02 IsElsControlled="true" AllowEnvLight="true" Color="blue" OffsetX="-0.25" OffsetY="-0.20" OffsetZ="0.50" />
+		<Extra03 IsElsControlled="true" AllowEnvLight="true" Color="blue" OffsetX="0.25" OffsetY="-0.20" OffsetZ="0.50" />
+		<Extra04 IsElsControlled="true" AllowEnvLight="true" Color="blue" OffsetX="0.70" OffsetY="-0.20" OffsetZ="0.50" />
+		<Extra05 IsElsControlled="true" AllowEnvLight="true" Color="amber" OffsetX="-0.70" OffsetY="-0.20" OffsetZ="0.50" />
+		<Extra06 IsElsControlled="true" AllowEnvLight="true" Color="amber" OffsetX="0.70" OffsetY="-0.20" OffsetZ="0.50" />
+		<Extra07 IsElsControlled="true" AllowEnvLight="true" Color="red" OffsetX="-0.40" OffsetY="-0.80" OffsetZ="0.40" />
+		<Extra08 IsElsControlled="true" AllowEnvLight="true" Color="red" OffsetX="0.00" OffsetY="-0.80" OffsetZ="0.40" />
+		<Extra09 IsElsControlled="true" AllowEnvLight="true" Color="red" OffsetX="0.40" OffsetY="-0.80" OffsetZ="0.40" />
+		<Extra10 IsElsControlled="false" />
+		<Extra11 IsElsControlled="false" />
+		<Extra12 IsElsControlled="false" AllowEnvLight="true" Color="white" />
+	</EOVERRIDE>
+
+	<!-- STATIC EXTRAS -->
+	<STATIC>
+		<Extra11 Name="Bullbar" />
+		<Extra12 Name="Takedown lights" />
+	</STATIC>
+
+	<!-- SOUNDS & SIREN CONFIG -->
+	<SOUNDS>
+		<MainHorn AudioString="SIRENS_AIRHORN" />
+		<NineMode AllowUse="true" />
+		<SrnTone1 AllowUse="true" AudioString="SIREN_ALPHA" SoundSet="DLC_WMSIRENS_SOUNDSET" />
+		<SrnTone2 AllowUse="true" AudioString="SIREN_ECHO" SoundSet="DLC_WMSIRENS_SOUNDSET" />
+		<SrnTone3 AllowUse="true" AudioString="SIREN_ECHO" SoundSet="DLC_WMSIRENS_SOUNDSET" />
+		<SrnTone4 AllowUse="true" AudioString="SIREN_FOXTROT" SoundSet="DLC_WMSIRENS_SOUNDSET" />
+	</SOUNDS>
+
+	<!-- CUSTOM PATTERN -->
+	<PATTERN>
+		<PRIMARY>
+			<Flash01 Duration="200" Extras="1,2" />
+			<Flash03 Duration="100" />
+			<Flash02 Duration="200" Extras="3,4" />
+			<Flash03 Duration="100" />
+		</PRIMARY>
+
+		<SECONDARY IsEmergency="false">
+			<Flash01 Duration="200" Extras="6" />
+			<Flash02 Duration="100" />
+			<Flash03 Duration="200" Extras="5" />
+			<Flash04 Duration="100" />
+		</SECONDARY>
+
+		<REARREDS IsEmergency="false">
+			<Flash01 Duration="350" Extras="9" />
+			<Flash02 Duration="350" />
+			<Flash03 Duration="350" Extras="7" />
+			<Flash04 Duration="350" />
+		</REARREDS>
+	</PATTERN>
+</vcfroot>
