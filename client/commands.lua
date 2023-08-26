@@ -4,24 +4,32 @@
 
 -- Press horn
 RegisterCommand('+elsHorn', function()
-    local playerPed = PlayerPedId()
-    local vehicle = GetVehiclePedIsUsing(playerPed)
-    local netVehicle = VehToNet(vehicle)
+    local elsVehicle = ELS.Functions.GetCurrentELSVehicle()
 
-    TriggerServerEvent('els:server:horn', netVehicle, true)
+    if elsVehicle == false then
+        return
+    end
+
+    TriggerServerEvent('els:server:horn', elsVehicle.netVehicle, true)
 end)
 
 -- Release horn
 RegisterCommand('-elsHorn', function()
-    local playerPed = PlayerPedId()
-    local vehicle = GetVehiclePedIsUsing(playerPed)
-    local netVehicle = VehToNet(vehicle)
+    local elsVehicle = ELS.Functions.GetCurrentELSVehicle()
 
-    TriggerServerEvent('els:server:horn', netVehicle, false)
+    if elsVehicle == false then
+        return
+    end
+
+    TriggerServerEvent('els:server:horn', elsVehicle.netVehicle, false)
 end)
 
 -- Press toggle modiforce
 RegisterCommand('+elsToggleModiforce', function()
+    if not ELS.Functions.IsInELSVehicle() then
+        return
+    end
+
     ELS.Functions.ShowModiforce()
 end)
 

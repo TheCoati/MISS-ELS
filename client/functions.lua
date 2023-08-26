@@ -62,12 +62,14 @@ function ELS.Functions.InitResource()
 
                 -- Vehicle got out of scope of the client
                 if not exists and elsVehicle.initialized then
+                    ELS.Functions.Log('debug', 'ELS vehicle ' .. netVehicle .. ' has become unavailable')
                     ELS.Functions.UnloadVehicle(netVehicle)
                     goto continue
                 end
 
                 -- Vehicle got within scope of the client
                 if exists and not elsVehicle.initialized then
+                    ELS.Functions.Log('debug', 'ELS vehicle ' .. netVehicle .. ' has become available')
                     ELS.Functions.LoadVehicle(netVehicle)
                 end
 
@@ -80,8 +82,10 @@ function ELS.Functions.InitResource()
 
     Citizen.CreateThread(function()
         while true do
-            -- Disable default horn usage
-            DisableControlAction(0, 86, true)
+            if ELS.Functions.IsInELSVehicle() then
+                -- Disable default horn usage
+                DisableControlAction(0, 86, true)
+            end
 
             for _, vehicleData in pairs(ELS.ELSVehicles) do
                 -- Skip vehicles that are not available to the client
@@ -399,6 +403,25 @@ end
 --- @param model string joaat hash to match with model name
 function ELS.Functions.IsELSVehicle(model)
     return ELS.Functions.GetELSVehicleModelName(model) ~= false
+end
+
+function ELS.Functions.GetCurrentELSVehicle()
+    local playerPed = PlayerPedId()
+    local isPedInVehicle = IsPedInAnyVehicle(playerPed, false)
+
+    if not isPedInVehicle then
+        return false
+    end
+
+    local vehicle = GetVehiclePedIsUsing(playerPed)
+    local netVehicle = VehToNet(vehicle)
+    local elsVehicle = ELS.ELSVehicles[netVehicle]
+
+    return elsVehicle or false
+end
+
+function ELS.Functions.IsInELSVehicle()
+    return ELS.Functions.GetCurrentELSVehicle() ~= false
 end
 
 --- Show the modiforce NUI interface

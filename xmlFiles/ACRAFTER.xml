@@ -27,10 +27,10 @@
 	<SOUNDS>
 		<MainHorn AudioString="SIRENS_AIRHORN" />
 		<NineMode AllowUse="true" />
-		<SrnTone1 AllowUse="true" AudioString="SIREN_ALPHA" SoundSet="DLC_WMSIRENS_SOUNDSET" />
-		<SrnTone2 AllowUse="true" AudioString="SIREN_ECHO" SoundSet="DLC_WMSIRENS_SOUNDSET" />
-		<SrnTone3 AllowUse="true" AudioString="SIREN_ECHO" SoundSet="DLC_WMSIRENS_SOUNDSET" />
-		<SrnTone4 AllowUse="true" AudioString="SIREN_FOXTROT" SoundSet="DLC_WMSIRENS_SOUNDSET" />
+		<SrnTone1 AllowUse="true" AudioString="SIREN_GOLF" SoundSet="DLC_WMSIRENS_SOUNDSET" />
+		<SrnTone2 AllowUse="true" AudioString="SIREN_CHARLIE" SoundSet="DLC_WMSIRENS_SOUNDSET" />
+		<SrnTone3 AllowUse="true" AudioString="SIREN_CHARLIE" SoundSet="DLC_WMSIRENS_SOUNDSET" />
+		<SrnTone4 AllowUse="true" AudioString="SIREN_GOLF" SoundSet="DLC_WMSIRENS_SOUNDSET" />
 	</SOUNDS>
 
 	<!-- CUSTOM PATTERN -->
