@@ -7,7 +7,7 @@ ELSConfig.AudioBanks = {
 }
 
 ELSConfig.LightRange = 20.0
-ELSConfig.LightIntensity = 0.1
+ELSConfig.LightIntensity = 0.15
 ELSConfig.LightColors = {
     blue  = { 0, 0, 255 },
     red   = { 255, 0, 0 },

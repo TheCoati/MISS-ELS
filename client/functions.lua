@@ -17,10 +17,10 @@ function ELS.Functions.InitResource()
     -- Detects when player enters a vehicle
     Citizen.CreateThread(function()
         local isInVehicle = false
-        local playerId = PlayerId()
-        local playerPed = PlayerPedId()
 
         while true do
+            local playerId = PlayerId()
+            local playerPed = PlayerPedId()
             local isDead = IsPlayerDead(playerId)
             local pedIsInVehicle = IsPedInAnyVehicle(playerPed, false)
 
@@ -262,6 +262,7 @@ function ELS.Functions.SetVehicleSiren(netVehicle, status)
         local audioRef = elsData.sounds['srnTone' .. status].soundSet or ''
 
         PlaySoundFromEntity(elsVehicle.soundId, audioName, elsVehicle.vehicle, audioRef, 0, 0)
+        SetVariableOnSound(elsVehicle.soundId, "Loudness", 0.1)
     end
 
     elsVehicle.state.siren = status

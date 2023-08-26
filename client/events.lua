@@ -17,7 +17,7 @@ end)
 
 RegisterNetEvent('els:client:init')
 AddEventHandler('els:client:init', function(data)
-    ELS.Functions.Log('debug', 'Received event "els:client:init" with ' .. #data .. ' vehicles')
+    ELS.Functions.Log('debug', 'Received event "els:client:init"')
 
     ELS.ELSData = data
 end)

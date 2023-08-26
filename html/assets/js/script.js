@@ -1,3 +1,5 @@
+let timeout = false
+
 const BUTTONS = [{
     color: '#b6617a',
     colorActive: '#F183A3',
@@ -36,10 +38,22 @@ for(let i = 0; i < BUTTONS.length; i++) {
     const button = document.createElement('button')
     button.classList.add('button')
     button.style.borderColor = buttonData.colorActive
-    //
 
     button.addEventListener('click', async () => {
-        await fetch(`https://${GetParentResourceName()}/toggle`, {
+        if (timeout) {
+            return
+        }
+
+        timeout = true
+
+        setTimeout(() => timeout = false, 500)
+
+        const audio = new Audio('assets/sounds/beep.ogg')
+        audio.volume = 0.05
+
+        setTimeout(() =>  audio.play().then(), 1)
+
+        fetch(`https://${GetParentResourceName()}/toggle`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json; charset=UTF-8',
@@ -48,10 +62,6 @@ for(let i = 0; i < BUTTONS.length; i++) {
                 event: buttonData.event
             })
         }).catch()
-
-        const audio = new Audio('sounds/beep.ogg')
-        audio.volume = 0.2
-        await audio.play()
     })
 
     frame.appendChild(button)
