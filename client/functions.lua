@@ -268,6 +268,8 @@ function ELS.Functions.SetVehicleSiren(netVehicle, status)
     elsVehicle.state.siren = status
 
     SetVehicleHasMutedSirens(elsVehicle.vehicle, true)
+
+    ELS.Functions.Log('debug', 'ELS vehicle ' .. netVehicle .. ' sirens set to state ' .. status)
 end
 
 --- Toggle the light stage of a vehicle
@@ -286,6 +288,8 @@ function ELS.Functions.SetVehicleLights(netVehicle, stage, toggle)
 
         -- Disable native siren
         SetVehicleSiren(elsVehicle.vehicle, false)
+
+        ELS.Functions.Log('debug', 'ELS vehicle ' .. netVehicle .. ' light state ' .. stage .. ' set to ' .. tostring(toggle))
         return
     end
 
@@ -336,6 +340,8 @@ function ELS.Functions.SetVehicleLights(netVehicle, stage, toggle)
             Citizen.Wait(1)
         end
     end)
+
+    ELS.Functions.Log('debug', 'ELS vehicle ' .. netVehicle .. ' light state ' .. stage .. ' set to ' .. tostring(toggle))
 end
 
 --- Draw environment light from an extra on a vehicle to visualize the lights
@@ -367,7 +373,7 @@ function ELS.Functions.UpdateVehicleState(netVehicle, state)
     end
 
     -- Update siren when state changed
-    if state.siren ~= elsVehicle.state.sire then
+    if state.siren ~= elsVehicle.state.siren then
         ELS.Functions.SetVehicleSiren(netVehicle, state.siren)
     end
 
@@ -385,6 +391,8 @@ function ELS.Functions.UpdateVehicleState(netVehicle, state)
     if state.warning ~= elsVehicle.state.warning then
         ELS.Functions.SetVehicleLights(netVehicle, 'warning', state.warning)
     end
+
+    ELS.Functions.Log('debug', 'ELS vehicle ' .. netVehicle .. ' state has been updated')
 end
 
 --- Get the vehicle model name of an model hash
