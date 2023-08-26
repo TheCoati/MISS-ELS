@@ -1,16 +1,25 @@
-Config = {}
+ELSConfig = {}
 
--- If you are using WM Server Sirens, uncomment below
--- See https://github.com/Walsheyy/WMServerSirens
-Config.AudioBanks = {
+ELSConfig.AudioBanks = {
     'DLC_WMSIRENS\\SIRENPACK_ONE',
 }
 
--- Change these values to tweak the light reflections around your vehicle
-Config.EnvironmentalLights = {
-    Range = 20.0, -- how far the light reaches
-    Intensity = 0.1, -- how intense the light source is
+ELSConfig.LightRange = 20.0
+ELSConfig.LightIntensity = 0.1
+ELSConfig.LightColors = {
+    blue  = { 0, 0, 255 },
+    red   = { 255, 0, 0 },
+    green = { 0, 255, 0 },
+    white = { 255, 255, 255 },
+    amber = { 255, 194, 0 },
 }
+
+ELSConfig.DefaultKeys = {
+    horn = 'E',
+    modiforce = 'LMENU'
+}
+
+-- TODO
 
 -- Whether vehicle passengers are allowed to control the lights and sirens
 Config.AllowPassengers = false

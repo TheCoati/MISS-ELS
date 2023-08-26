@@ -10,24 +10,23 @@ shared_scripts {
 }
 
 client_scripts {
-    'client/*.lua',
+    'client/main.lua',
+    'client/functions.lua',
+    'client/commands.lua',
+    'client/events.lua',
 }
 
 server_scripts {
-    'lib/SLAXML.lua',
-    'server/parseVCF.lua',
+    'server/lib/SLAXML.lua',  -- SLAXML (https://github.com/Phrogz/SLAXML)
+    'server/lib/MISSELS.lua', -- MISS-ELS VCF Parser (https://github.com/matsn0w/MISS-ELS/blob/main/resource/server/parseVCF.lua)
     'server/main.lua',
 }
 
 files {
     'html/index.html',
-    'html/style.css',
-    'html/script.js',
-    'html/sounds/**/*.ogg'
+    'html/assets/js/**/*.js',
+    'html/assets/css/**/*.css',
+    'html/assets/sounds/**/*.ogg',
 }
 
 ui_page 'html/index.html'
-
-dependencies {
-    'baseevents',
-}
