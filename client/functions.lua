@@ -286,8 +286,10 @@ function ELS.Functions.SetVehicleLights(netVehicle, stage, toggle)
     if not toggle then
         elsVehicle.state[stage] = toggle
 
-        -- Disable native siren
-        SetVehicleSiren(elsVehicle.vehicle, false)
+        if ELSConfig.NativeSiresEnabled then
+            -- Disable native sirens
+            SetVehicleSiren(elsVehicle.vehicle, false)
+        end
 
         ELS.Functions.Log('debug', 'ELS vehicle ' .. netVehicle .. ' light state ' .. stage .. ' set to ' .. tostring(toggle))
         return
@@ -308,8 +310,10 @@ function ELS.Functions.SetVehicleLights(netVehicle, stage, toggle)
 
     -- Set vehicle siren loop in new thread
     Citizen.CreateThread(function()
-        -- Set native sirens when the given lights are emergency lights
-        SetVehicleSiren(elsVehicle.vehicle, elsData.patterns[pattern].isEmergency)
+        if ELSConfig.NativeSiresEnabled then
+            -- Set native sirens when the given lights are emergency lights
+            SetVehicleSiren(elsVehicle.vehicle, elsData.patterns[pattern].isEmergency)
+        end
 
         -- As long the sirens are toggled
         while elsVehicle.state[stage] do
