@@ -1,5 +1,5 @@
 ELSConfig = {}
-ELSConfig.Debug = true
+ELSConfig.Debug = false
 
 -- Custom audio banks to load on startup
 -- For example when using WMServerSirens (https://github.com/Walsheyy/WMServerSirens)
@@ -8,7 +8,7 @@ ELSConfig.AudioBanks = {
 }
 
 -- When disabled AI vehicles will ignore the sirens and emergency lights
--- This will also the blinking of the rear lights with emergency lights on
+-- This will also disable the blinking of the rear lights with emergency lights on
 ELSConfig.NativeSiresEnabled = true
 
 -- Light related configuration
@@ -22,6 +22,7 @@ ELSConfig.LightColors = {
     amber = { 255, 194, 0 },
 }
 
+-- Default keybindings
 ELSConfig.DefaultKeys = {
     horn = 'E',
     modiforce = 'LMENU'
