@@ -31,7 +31,7 @@ function ELS.Functions.InitResource()
                 local vehicle = GetVehiclePedIsUsing(playerPed)
                 local model = GetEntityModel(vehicle)
 
-                if not IsELSVehicle(model) then
+                if not ELS.Functions.IsELSVehicle(model) then
                     goto continue
                 end
 
@@ -39,6 +39,7 @@ function ELS.Functions.InitResource()
 
                 TriggerServerEvent('els:server:enteredVehicle', vehicle, model, netVehicle)
 
+                ELS.Functions.Log('debug', 'Ped entered ELS vehicle')
                 goto continue -- Continue to next loop
             end
 
@@ -66,7 +67,7 @@ function ELS.Functions.InitResource()
                 end
 
                 -- Vehicle got within scope of the client
-                if exists and not vehicleData.initialized then
+                if exists and not elsVehicle.initialized then
                     ELS.Functions.LoadVehicle(netVehicle)
                 end
 
@@ -130,6 +131,8 @@ function ELS.Functions.RegisterVehicle(netVehicle)
         soundId = nil, -- Sound ID (https://docs.fivem.net/natives/?_0x430386FE9BF80B45)
         state = {}, -- State of vehicle lights and sirens
     }
+
+    ELS.Functions.Log('debug', 'Vehicle ' .. netVehicle .. ' has been registered as ELS vehicle')
 end
 
 --- Remove an ELS vehicle from client register to stop checking
@@ -148,6 +151,8 @@ function ELS.Functions.UnregisterVehicle(netVehicle)
 
     -- Remove vehicle
     ELS.ELSVehicles[netVehicle] = nil
+
+    ELS.Functions.Log('debug', 'Vehicle ' .. netVehicle .. ' has been unregistered as ELS vehicle')
 end
 
 --- Load the vehicle when the vehicle becomes available to the client
@@ -177,7 +182,9 @@ function ELS.Functions.LoadVehicle(netVehicle)
     ELS.Functions.ResetVehicleExtras(netVehicle)
 
     -- Request the state of the vehicle
-    TriggerServerEvent('els:server:requestState', vehicleId)
+    TriggerServerEvent('els:server:requestState', netVehicle)
+
+    ELS.Functions.Log('debug', 'ELS vehicle ' .. netVehicle .. ' has been loaded')
 end
 
 --- Unload the vehicle when the vehicle becomes unavailable to the client
@@ -200,6 +207,8 @@ function ELS.Functions.UnloadVehicle(netVehicle)
     -- Stop all playing sounds by vehicle
     StopSound(elsVehicle.soundId)
     ReleaseSoundId(elsVehicle.soundId)
+
+    ELS.Functions.Log('debug', 'ELS vehicle ' .. netVehicle .. ' has been unloaded')
 end
 
 --- Reset all extras on a ELS vehicle
@@ -219,6 +228,8 @@ function ELS.Functions.ResetVehicleExtras(netVehicle)
             SetVehicleExtra(elsVehicle.vehicle, extra, true)
         end
     end
+
+    ELS.Functions.Log('debug', 'Extra\'s of ELS vehicle ' .. netVehicle .. ' has been reset')
 end
 
 --- Set the siren tone of the vehicle
@@ -334,7 +345,7 @@ function ELS.Functions.DrawEnviromentLightThisFrame(vehicle, extra, offset, colo
 
     local range = ELSConfig.LightRange or 50.0
     local intensity = ELSConfig.LightIntensity or 1.0
-    local rgb = ELSConfig.LightColors[color] or { 255, 255, 255 }
+    local rgb = ELSConfig.LightColors[string.lower(color)] or { 255, 255, 255 }
     local shadow = 1.0
 
     DrawLightWithRangeAndShadow(position.x, position.y, position.z, rgb[1], rgb[2], rgb[3], range, intensity, shadow)

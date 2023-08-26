@@ -17,21 +17,29 @@ end)
 
 RegisterNetEvent('els:client:init')
 AddEventHandler('els:client:init', function(data)
+    ELS.Functions.Log('debug', 'Received event "els:client:init" with ' .. #data .. ' vehicles')
+
     ELS.ELSData = data
 end)
 
 RegisterNetEvent('els:client:registerVehicle')
 AddEventHandler('els:client:registerVehicle', function(netVehicle)
+    ELS.Functions.Log('debug', 'Received event "els:client:registerVehicle" for vehicle ' .. netVehicle)
+
     ELS.Functions.RegisterVehicle(netVehicle)
 end)
 
 RegisterNetEvent('els:client:deregisterVehicle')
 AddEventHandler('els:client:deregisterVehicle', function(netVehicle)
+    ELS.Functions.Log('debug', 'Received event "els:client:deregisterVehicle" for vehicle ' .. netVehicle)
+
     ELS.Functions.UnregisterVehicle(netVehicle)
 end)
 
 RegisterNetEvent('els:client:updateState')
 AddEventHandler('els:client:updateState', function(netVehicle, state)
+    ELS.Functions.Log('debug', 'Received event "els:client:updateState" for vehicle ' .. netVehicle)
+
     ELS.Functions.UpdateVehicleState(netVehicle, state)
 end)
 

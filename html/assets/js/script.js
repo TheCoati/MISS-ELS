@@ -47,7 +47,7 @@ for(let i = 0; i < BUTTONS.length; i++) {
             body: JSON.stringify({
                 event: buttonData.event
             })
-        })
+        }).catch()
 
         const audio = new Audio('sounds/beep.ogg')
         audio.volume = 0.2
