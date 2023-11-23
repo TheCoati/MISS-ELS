@@ -1,4 +1,6 @@
-# MIX-EUP
+# MIX-ELS
+
+> **Deprecated:** The use of MIX-ELS is now discouraged in favor of re-implementing OneSync within [MISS-ELS](https://github.com/matsn0w/MISS-ELS).
 
 Heavily modified ELS resource based of [MISS-ELS]() for the [MIX RP](https://servers.fivem.net/servers/detail/g5xpkm) FiveM server. 
 
